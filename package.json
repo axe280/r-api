@@ -1,0 +1,32 @@
+{
+  "name": "r-api",
+  "version": "1.0.0",
+  "description": "rest api example",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axe280/r-api.git"
+  },
+  "keywords": [
+    "vue",
+    "rest",
+    "api"
+  ],
+  "author": "Alexey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/axe280/r-api/issues"
+  },
+  "homepage": "https://github.com/axe280/r-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^8.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}

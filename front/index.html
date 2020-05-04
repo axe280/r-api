@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue + rest api</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+    .spinner-wrapper {
+      text-align: center;
+      margin: 30px 0;
+    }
+    .alert-fixed {
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      z-index: 3;
+    }
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <div class="container pt-5 pb-5">
+      <h1 class="mb-5">Rest api example</h1>
+      <form class="form-row align-items-end" @submit.prevent="addCard">
+        <div class="form-group col-md-5">
+          <label for="extext">Card name</label>
+          <input type="text" class="form-control" id="extext" v-model="form.name">
+        </div>
+        <div class="form-group col-md-5">
+          <label for="exvalue">Value</label>
+          <input type="text" class="form-control" id="exvalue" v-model="form.value">
+        </div>
+        <div class="form-group col-md-2">
+          <button :disabled="!isFormFileds"
+            :class="isFormFileds ? 'btn-primary' : 'btn-secondary'"
+            class="btn btn-block"
+            type="submit" 
+          >Add</button>
+        </div>
+      </form>
+
+      <transition name="fade">
+        <alert v-if="alertMessage"
+        :alert-info="alertMessage"></alert>
+      </transition>
+
+      <loader v-if="loading"></loader>
+
+      <div class="cards" v-else-if="cards.length">
+        <div class="card mb-3"
+          v-for="card in cards"
+        >
+          <div class="card-body">
+            <h5 class="card-title">{{ card.name }}</h5>
+            <p>
+              <strong>{{ card.value }}</strong>
+            </p>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <button @click="activateButton(card.id)"
+                  :disabled="card.activated"
+                  :class="card.activated ? 'btn-secondary' : 'btn-success'"
+                  class="btn"
+                  type="button">{{ card.activated ? 'Activated' : 'Activate' }}</button>
+              </div>
+              <div>
+                <button @click="deleteCard(card.id)"
+                  type="button" class="btn btn-outline-danger">Delete card</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div v-else
+        class="alert alert-secondary" role="alert">Cardslist is empty</div>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
