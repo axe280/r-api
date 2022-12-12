@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/axe280/r-api#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "uuid": "^8.0.0"
   },
   "devDependencies": {
